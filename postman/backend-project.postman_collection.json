@@ -1,0 +1,359 @@
+{
+	"info": {
+		"_postman_id": "59ad8374-837f-4073-841c-f618fd6c4e24",
+		"name": "backend-project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25737633"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "/api/auth kontrol",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_ADDRESS}}:{{PORT}}/api/auth",
+							"host": [
+								"{{API_ADDRESS}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"api",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/auth/register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Ayşe\",\r\n    \"email\":\"Ayşe@Ayşe.com\",\r\n    \"password\":\"efwef\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_ADDRESS}}:{{PORT}}/api/auth/register",
+							"host": [
+								"{{API_ADDRESS}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/auth/login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var payload=JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"token\",payload.token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Ayşe\",\r\n    \"password\":\"efwef\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_ADDRESS}}:{{PORT}}/api/auth/login",
+							"host": [
+								"{{API_ADDRESS}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "/api/users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_ADDRESS}}:{{PORT}}/api/users",
+							"host": [
+								"{{API_ADDRESS}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/users/:id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_ADDRESS}}:{{PORT}}/api/users/4",
+							"host": [
+								"{{API_ADDRESS}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"api",
+								"users",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/users/:id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Ayse123dd4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_ADDRESS}}:{{PORT}}/api/users/4",
+							"host": [
+								"{{API_ADDRESS}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"api",
+								"users",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "twit",
+			"item": [
+				{
+					"name": "/api/twit tüm twetler geliyor(post atılan zamana göre sıralandı)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_ADDRESS}}:{{PORT}}/api/twit",
+							"host": [
+								"{{API_ADDRESS}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"api",
+								"twit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/twit/:id kullanıcı id sine göre postlar ve yorumlar geliyor",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_ADDRESS}}:{{PORT}}/api/twit/4",
+							"host": [
+								"{{API_ADDRESS}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"api",
+								"twit",
+								"4"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/twit/  post atılıyor",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\":4,\r\n    \"post_content\":\"Sunum varrrr\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_ADDRESS}}:{{PORT}}/api/twit",
+							"host": [
+								"{{API_ADDRESS}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"api",
+								"twit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/twit/:post_id postta değişikli yapılıyor",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"post_content\": \"Sunuma hazırlannnndın mı\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_ADDRESS}}:{{PORT}}/api/twit/5",
+							"host": [
+								"{{API_ADDRESS}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"api",
+								"twit",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/twit/:post_id post id'ye göre post siliniyor",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_ADDRESS}}:{{PORT}}/api/twit/6",
+							"host": [
+								"{{API_ADDRESS}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"api",
+								"twit",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
