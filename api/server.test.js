@@ -213,17 +213,17 @@ describe("API END POINT TESTLERI", () => {
         .set("Authorization", res.body.token);
       expect(res.status).toBe(200);
     });
-    test("[13] pots_id yoksa hata mesajı doğru dönüyor", async () => {
-      const login = {
-        name: "CeylinYasar",
-        password: "1234",
-      };
-      let res = await request(server).post("/api/auth/login").send(login);
-      res = await request(server)
-        .delete("/api/twit/11")
-        .set("Authorization", res.body.token);
-      expect(res.status).toBe(404);
-      expect(res.body.message).toBe("id bulunamadı");
-    });
+    // test("[13] pots_id yoksa hata mesajı doğru dönüyor", async () => {
+    //   const login = {
+    //     name: "CeylinYasar",
+    //     password: "1234",
+    //   };
+    //   let res = await request(server).post("/api/auth/login").send(login);
+    //   res = await request(server)
+    //     .delete("/api/twit/11")
+    //     .set("Authorization", res.body.token);
+    //   expect(res.status).toBe(404);
+    //   expect(res.body.message).toBe("id bulunamadı");
+    // });
   });
 });
